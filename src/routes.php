@@ -3,6 +3,7 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Middleware\HeaderMiddleware;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -15,5 +16,10 @@ return function (App $app) {
     //     return $container->get('renderer')->render($response, 'index.phtml', $args);
     // });
 
-    $app->get('/', \HomeController::class . ':home')->setName('home');
+    $app->get('/', \HomeController::class . ':home')->setName('home')->add(new HeaderMiddleware($container));
+
+    $app->group("/", function(App $app){
+        $app->get('getting-started', \HomeController::class . ':gettingStarted');
+    })->add(new HeaderMiddleware($container));
+
 };
