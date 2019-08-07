@@ -48,16 +48,16 @@ if (!$results) {
 
 // this will make Gettext look for ../locales/<lang>/LC_MESSAGES/messages.mo
 $results= bindtextdomain($domain, $locale_dir);
-echo 'new text domain is set: ' . $results. "<br>";
+// echo 'new text domain is set: ' . $results. "<br>";
 
 // indicates in what encoding the file should be read
 bind_textdomain_codeset($domain, 'UTF-8');
 
 // here we indicate the default domain the gettext() calls will respond to
 $results = textdomain($domain);
-echo 'current message domain is set: ' . $results. "<br>";
+// echo 'current message domain is set: ' . $results. "<br>";
 
 $results = _("Hello");
 if ($results === "Hello") {
-    echo "Original English was returned. Something wrong<br>";
+    // echo "Original English was returned. Something wrong<br>";
 }
