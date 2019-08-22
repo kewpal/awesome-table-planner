@@ -5,6 +5,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Middleware\HeaderMiddleware;
 
+
 return function (App $app) {
     $container = $app->getContainer();
 
@@ -22,4 +23,10 @@ return function (App $app) {
         $app->get('getting-started', \HomeController::class . ':gettingStarted');
     })->add(new HeaderMiddleware($container));
 
+
+    $app->group("/planner", function(App $app){
+        $app->get('', \PlannerController::class . ':index');
+
+        $app->post('/test', \PlannerController::class . ':test');
+    });
 };

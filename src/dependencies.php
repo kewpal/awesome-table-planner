@@ -25,6 +25,11 @@ return function (App $app) {
         return new \App\Controller\HomeController($view, $c);
     };
 
+    $container['PlannerController'] = function($c){
+        $view = $c->get("renderer");
+        return new \App\Controller\PlannerController($view, $c);
+    };
+
     $container['AuthController'] = function($c) {
         $view = $c->get("renderer");
         return new \App\Controller\AuthController($view, $c);
